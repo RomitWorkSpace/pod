@@ -8,10 +8,12 @@ function MainArea() {
     const tshirtType = useTshirtStore((state) => state.tshirtType)
     const selectedTshirt = useTshirtStore((state) => state.selectedTshirt)
     const setTshirtColor = useTshirtStore((state) => state.setTshirtColor)
+    const setTshirtSize = useTshirtStore((state) => state.setTshirtSize)
 
     const setTshirtVariant = (tshirtName)=>{
         selectedTshirt(tshirtName)
-        setTshirtColor(tshirtName)
+        setTshirtColor()
+        setTshirtSize()
     }
 
     return (
