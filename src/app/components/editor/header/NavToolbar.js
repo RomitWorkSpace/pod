@@ -79,8 +79,12 @@ function NavToolbar() {
         setBorderWidth(activeObject.strokeWidth || 0);
 
         //check based on type
-        if (activeObject.type === "i-text") {
+        if (activeObject.type === "i-text" || activeObject.type === "group") {
           setObjectType("text");
+
+          if(activeObject.type === "group"){
+            setObjectType("group");
+          }
 
           setText(activeObject.text || "");
           setFontSize(activeObject.fontSize || 24);
@@ -467,7 +471,7 @@ const cropSelectedImage = async (canvas, selectedImg) => {
     <>
     
         {/* Text related properties */}
-        {objectType === "text" && 
+        {(objectType === "text" || objectType === "group") && 
         <TextToolstrip 
             textFontWeight={fontWeight}
             textFont={fontFamily}
@@ -487,7 +491,7 @@ const cropSelectedImage = async (canvas, selectedImg) => {
         />}
 
 
-        {(objectType === "shape" && !isImageCropActive) && 
+        {objectType === "shape" && 
         <ShapeToolbar
             shapeBorderStyle={borderStyle}
             bgColor={fillColor}
